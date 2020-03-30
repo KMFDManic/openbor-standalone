@@ -515,7 +515,7 @@ CFLAGS 	       += -DLINUX -headerpad_max_install_names -isysroot $(SDKPATH)
 endif
 
 ifdef BUILD_CLASSIC_PSC
-CFLAGS         += -DLINUX -DCLASSIC
+CFLAGS         += -DLINUX -DCLASSIC -DCLASSIC_PSC
 endif
 
 ifdef BUILD_PANDORA
