@@ -135,6 +135,30 @@ BUILD_DEBUG     = 1
 endif
 endif
 
+ifdef BUILD_CLASSIC_PSC
+TARGET 	        = $(VERSION_NAME).elf
+TARGET_FINAL    = $(VERSION_NAME)
+TARGET_PLATFORM = CLASSIC_PSC
+BUILD_CLASSIC   = 1
+BUILD_SDL       = 1
+BUILD_GFX       = 1
+BUILD_PTHREAD   = 1
+BUILD_SDL_IO    = 1
+BUILD_OPENGL    = 1
+#BUILD_LOADGL    = 1
+BUILD_VORBIS    = 1
+BUILD_WEBM      = 1
+BUILDING        = 1
+CC  	        = arm-linux-gnueabihf-gcc-6
+LIBPATH         = usr/lib/arm-linux-gnueabihf
+OBJTYPE         = elf
+INCLUDES        = $(SDKPATH)/include
+ARCHFLAGS       = -marm -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -Wno-unused-result -I/usr/include/SDL2 -D_REENTRANT `sdl2-config --libs`
+ifeq ($(BUILD_CLASSIC_PSC), 0)
+BUILD_DEBUG     = 1
+endif
+endif
+
 ifdef BUILD_PANDORA
 TARGET 	        = $(VERSION_NAME).elf
 TARGET_FINAL    = $(VERSION_NAME)
@@ -199,6 +223,9 @@ STRIP 	        = $(LNXDEV)/$(PREFIX)strip $(TARGET) -o $(TARGET_FINAL)
 endif
 ifdef BUILD_DARWIN
 STRIP           = $(PREFIX)strip $(TARGET) -o $(TARGET_FINAL)
+endif
+ifdef BUILD_CLASSIC
+STRIP 	        = arm-linux-gnueabihf-strip $(TARGET) -o $(TARGET_FINAL)
 endif
 ifdef BUILD_PANDORA
 STRIP 	        = $(PNDDEV)/bin/arm-none-linux-gnueabi-strip $(TARGET) -o $(TARGET_FINAL)
@@ -456,7 +483,11 @@ endif
 endif
 
 ifndef BUILD_DEBUG
+ifdef BUILD_CLASSIC
 CFLAGS 	       += -O2
+else
+CFLAGS 	       += -O3
+endif
 CFLAGS 	       += -fno-ident -freorder-blocks
 ifndef BUILD_AMD64
 CFLAGS         += -fomit-frame-pointer
@@ -483,6 +514,9 @@ ifdef BUILD_DARWIN
 CFLAGS 	       += -DLINUX -headerpad_max_install_names -isysroot $(SDKPATH)
 endif
 
+ifdef BUILD_CLASSIC_PSC
+CFLAGS         += -DLINUX -DCLASSIC
+endif
 
 ifdef BUILD_PANDORA
 CFLAGS         += -DLINUX
@@ -592,6 +626,9 @@ ifdef BUILD_PTHREAD
 LIBS           += -lpthread
 endif
 
+ifdef BUILD_CLASSIC
+LIBS += -lGL $(LIBPATH)/libvpx.a 
+endif
 
 ifdef BUILD_WII
 LIBS           += -lwupc -lwiiuse -lbte -lfat -lasnd -logc
@@ -621,6 +658,7 @@ endif
 
 
 ifdef BUILD_WEBM
+ifndef BUILD_CLASSIC
 LIBS           += -lvpx
 ifdef CROSSCOMPILE_LINUX_WIN
 LIBS	       += -lpthread
@@ -651,8 +689,6 @@ BUILD_PRX       = 1
 include psp/build.mak
 endif
 
-
-
 #----------------------------------------------------------------------------------------------------
 # Rules to manage Files and Libraries for SDL
 #----------------------------------------------------------------------------------------------------
@@ -662,13 +698,17 @@ all : $(TARGET) $(TARGET_FINAL)
 	@echo
 %.o : %.asm
 	@echo Compiling $(TARGET_PLATFORM) Port: $<...
+	@echo $(YASM) -D $(TARGET_PLATFORM) -f $(OBJTYPE) -m $(TARGET_ARCH) -o $@ $<
 	@$(YASM) -D $(TARGET_PLATFORM) -f $(OBJTYPE) -m $(TARGET_ARCH) -o $@ $<
+	@echo
 %.o : %.c
 	@echo Compiling $(TARGET_PLATFORM) Port: $<...
+	@echo $(CC) $(CFLAGS) -c $< -o $@
 	@$(CC) $(CFLAGS) -c $< -o $@
-$(TARGET) : $(OBJS) $(RES)
 	@echo
+$(TARGET) : $(OBJS) $(RES)
 	@echo Linking $(TARGET_PLATFORM) Port: $(TARGET)...
+	@echo @$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(TARGET_RESOURCE) $(LIBS)
 	@$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(TARGET_RESOURCE) $(LIBS)
 $(TARGET_FINAL) : $(TARGET)
 	@echo Stripping $(TARGET_PLATFORM) Port: $(TARGET_FINAL)...
@@ -743,6 +783,8 @@ all:
 	@echo make BUILD_PS2=1
 	@echo make BUILD_WII=1
 	@echo make BUILD_WIN=1
+	@echo make BUILD_CLASSIC_PSC=1
+	@echo make BUILD_CLASSIC_SEGA=1
 	@echo make BUILD_PANDORA=1
 	@echo make BUILD_LINUX=1
 	@echo
@@ -766,7 +808,7 @@ clean-releases:
 clean:
 	@echo
 	@echo "Removing All $(TARGET_PLATFORM) Files..."
-	@rm -f $(TARGET) $(TARGET_FINAL) $(TARGET_MAP) PARAM.SFO param.sfo eboot.bin OpenBOR.velf linkmap $(OBJS)
+	@rm -f $(TARGET) $(TARGET_FINAL) $(TARGET_MAP) PARAM.SFO param.sfo eboot.bin OpenBOR.velf linkmap $(OBJS) OpenBOR*
 	@echo Done!
 	@echo
 endif
