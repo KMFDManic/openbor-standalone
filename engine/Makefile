@@ -150,7 +150,7 @@ BUILD_VORBIS    = 1
 BUILD_WEBM      = 1
 BUILDING        = 1
 CC  	        = arm-linux-gnueabihf-gcc-6
-LIBPATH         = usr/lib/arm-linux-gnueabihf
+LIBPATH         = /usr/lib/arm-linux-gnueabihf
 OBJTYPE         = elf
 INCLUDES        = $(SDKPATH)/include
 ARCHFLAGS       = -marm -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -Wno-unused-result -I/usr/include/SDL2 -D_REENTRANT `sdl2-config --libs`
@@ -660,6 +660,7 @@ endif
 ifdef BUILD_WEBM
 ifndef BUILD_CLASSIC
 LIBS           += -lvpx
+endif
 ifdef CROSSCOMPILE_LINUX_WIN
 LIBS	       += -lpthread
 endif
@@ -822,4 +823,3 @@ version:
 	@echo
 	@echo "Copyright (c) 2004 - 2018 OpenBOR Team"
 	@echo "-------------------------------------------------------"
-
