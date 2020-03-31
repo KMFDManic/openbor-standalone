@@ -41,7 +41,7 @@ function read_version {
 check_git
 get_revnum
 VERSION_NAME="OpenBOR"
-VERSION_MAJOR=3
+VERSION_MAJOR=4
 VERSION_MINOR=0
 VERSION_DATE=`date '+%Y%m%d%H%M%S'`
 

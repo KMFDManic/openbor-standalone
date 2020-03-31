@@ -1,0 +1,9 @@
+ In 2004, Senile Team released Beats of Rage, a free beat-'em-up
+ for DOS inspired by SEGA's Streets of Rage series and using
+ sprites from SNK Playmore's King of Fighters series. The game 
+ spread only by word of mouth, but it nonetheless amassed popularity
+ very quickly. Senile Team soon released an edit pack allowing anyone 
+ interested to create a module for the BOR engine. In 2005, Kirby2000
+ asked Senile Team to open the source code to BOR. They agreed,
+ and OpenBOR was born. Development on the engine was continued by the
+ community, and still is to this day. 
