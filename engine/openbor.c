@@ -35338,7 +35338,7 @@ void display_credits()
         font_printf(col1, s + v * m, 0, 0, "SX");
         font_printf(col2, s + v * m,  0, 0, "Tails"); ++m;
         font_printf(col1, s + v * m,  0, 0, "uTunnels");
-		font_printf(col2, s + v * m,  0, 0, "White Dragon"); ++m;
+    		font_printf(col2, s + v * m,  0, 0, "White Dragon"); ++m;
 
         font_printf(_strmidx(1, "Ports"), s + v * m,  1, 0, "Ports"); ++m;
         font_printf(col1, s + v * m, 0, 0, "PSP/Linux/OSX");
@@ -35350,6 +35350,9 @@ void display_credits()
         font_printf(col1, s + v * m, 0, 0, "DreamCast");
         font_printf(col2, s + v * m, 0, 0, "Neill Corlett, SX"); ++m;
 		*/
+        font_printf(col1, s + v * m, 0, 0, "Classic Mini Consoles");
+        font_printf(col2, s + v * m, 0, 0, "ModMyClassic"); ++m;
+
         font_printf(col1, s + v * m, 0, 0, "Wii");
         font_printf(col2, s + v * m, 0, 0, "Plombo, SX, Msmalik681"); ++m;
 

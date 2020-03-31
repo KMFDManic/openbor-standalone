@@ -461,6 +461,11 @@ static void initMenu(int type)
 	savedata.hwscale = 0.0f;
 #endif
 
+#ifdef CLASSIC
+	isWide = 1;
+	isFull = 1;
+#endif
+
 	pixelformat = PIXEL_x8;
 
 	savedata.fullscreen = isFull;
@@ -543,7 +548,15 @@ static void drawMenu()
 		}
 	}
 
+#ifndef CLASSIC
 	printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s", VERSION);
+#else
+#if defined CLASSIC_PSC
+  printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s, Target: PlayStation Classic", VERSION);
+#elif defined CLASSIC_SEGA
+  printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s, Target: Mega Drive Mini", VERSION);
+#endif
+#endif
 	printText((isWide ? 392 : 261),(isWide ? 11 : 4), WHITE, 0, 0, __DATE__);
 		//CRxTRDude - Fix for Android's text - Main menu
 #ifdef ANDROID
@@ -558,8 +571,14 @@ static void drawMenu()
 	printText((isWide ? 390 : 244),(isWide ? 251 : 226), WHITE, 0, 0, "%s: Quit Game", control_getkeyname(savedata.keys[0][SDID_SPECIAL]));
 #endif
 	//CRxTRDude - Fixed the placement of these texts and appropriately changed the site for Chrono Crash
+#ifndef CLASSIC
   printText((isWide ? 320 : 188),(isWide ? 175 : 158), BLACK, 0, 0, "www.chronocrash.com");
 	printText((isWide ? 322 : 190),(isWide ? 185 : 168), BLACK, 0, 0, "www.SenileTeam.com");
+#else
+  printText((isWide ? 320 : 188),(isWide ? 170 : 153), BLACK, 0, 0, "www.chronocrash.com");
+	printText((isWide ? 322 : 190),(isWide ? 180 : 163), BLACK, 0, 0, "www.SenileTeam.com");
+	printText((isWide ? 318 : 186),(isWide ? 190 : 173), BLACK, 0, 0, "www.modmyclassic.com");
+#endif
 
 #ifdef SPK_SUPPORTED
 	printText((isWide ? 324 : 192),(isWide ? 191 : 176), DARK_RED, 0, 0, "SecurePAK Edition");
@@ -604,8 +623,15 @@ static void drawBGMPlayer()
 			printText((isWide ? 30 : 7) + shift, (isWide ? 33 : 22)+(11*list) , colors, 0, 0, "%s", listing);
 		}
 	}
-
+#ifndef CLASSIC
 	printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s", VERSION);
+#else
+#if defined CLASSIC_PSC
+  printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s, Target: PlayStation Classic", VERSION);
+#elif defined CLASSIC_SEGA
+  printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s, Target: Mega Drive Mini", VERSION);
+#endif
+#endif
 	printText((isWide ? 392 : 261),(isWide ? 11 : 4), WHITE, 0, 0, __DATE__);
 //CRxTRDude - Fix for Android's text - BGM MODE
 #ifdef ANDROID

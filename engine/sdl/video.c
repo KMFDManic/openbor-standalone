@@ -67,14 +67,16 @@ void initSDL()
 	SDL_GetCurrentDisplayMode(0, &video_info);
 #ifdef CLASSIC_PSC
 	// Due to the sub standard wayland/SDL deployment on the PSC in some situations
-	// SDL_GetCurrentDisplayMode will return the wrong figures so hardcode it to 720p 
+	// SDL_GetCurrentDisplayMode will return the wrong figures so hardcode it to 720p
 	// to eliminate the risk
-	nativeWidth = 1280;
-	nativeHeight = 720;
-#else
+	video_info.w = 1280;
+	video_info.h = 720;
+  video_info.format = SDL_PIXELFORMAT_ABGR8888;
+#endif
+
 	nativeWidth = video_info.w;
 	nativeHeight = video_info.h;
-#endif
+
 	printf("debug:nativeWidth, nativeHeight, bpp, Hz  %d, %d, %d, %d\n", nativeWidth, nativeHeight, SDL_BITSPERPIXEL(video_info.format), video_info.refresh_rate);
 }
 
@@ -92,6 +94,12 @@ int SetVideoMode(int w, int h, int bpp, bool gl)
 	static bool last_gl = false;
 	static int last_x = SDL_WINDOWPOS_UNDEFINED;
 	static int last_y = SDL_WINDOWPOS_UNDEFINED;
+
+#ifdef CLASSIC
+  w = 1280;
+  h = 720;
+  savedata.fullscreen = true;
+#endif
 
 	if(gl) flags |= SDL_WINDOW_OPENGL;
 	if(savedata.fullscreen) flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
