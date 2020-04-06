@@ -16,6 +16,7 @@ sony-pack-deploy:
     - wget https://classicmodscloud.com/project_eris/.build_files/libGL.so.1
     - mv libGL.so.1 /usr/arm-linux-gnueabihf/lib_psc/
     - sed -i 's/-j -f/-j 4 -f/g' "/usr/bin/classic_make_psc"
+    - cd engine/
     - ./version.sh
     - BUILD_CLASSIC_PSC=1 classic_make_psc Makefile
     - cd classic && make -f Makefile.pack_psc_eris
