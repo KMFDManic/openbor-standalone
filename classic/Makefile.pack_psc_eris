@@ -19,7 +19,7 @@ PKG_TARGET := $(PKG_NAME)_$(VERSION)_$(PLATFORM)-$(GIT_COMMIT)
 all : $(PKG_TARGET).mod
 
 $(PKG_TARGET).mod:
-	cp ../OpenBOR* ./psc_eris/media/project_eris/etc/project_eris/SUP/launchers/openbor/
+	cp ../engine/OpenBOR* ./psc_eris/media/project_eris/etc/project_eris/SUP/launchers/openbor/
 	mkdir -p $(PKG_TARGET)/DEBIAN
 	cp -rf psc_eris/* $(PKG_TARGET)/
 	chmod +x $(PKG_TARGET)/media/project_eris/etc/project_eris/SUP/launchers/openbor/launch.sh
