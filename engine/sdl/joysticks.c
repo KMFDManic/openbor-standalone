@@ -20,8 +20,8 @@ const char *JoystickKeyName[JOY_NAME_SIZE] = {
   x" Down",            \
   x" Left",            \
   x" X",               \
-  x" SQUARE",          \
   x" CIRCLE",          \
+  x" SQUARE",          \
   x" TRIANGLE",        \
   x" SELECT",          \
   x" Button 6",        \
@@ -305,8 +305,8 @@ const char* JoystickButtonNames[JOY_NAME_SIZE] = {
 	"...",
 #define BUTTON_NAMES(x) \
   x" X",              \
-  x" SQUARE",         \
   x" CIRCLE",         \
+  x" SQUARE",         \
   x" TRIANGLE",       \
   x" SELECT",         \
   x" Button 6",       \
