@@ -20,4 +20,4 @@ sony-pack-deploy:
     - ./version.sh
     - BUILD_CLASSIC_PSC=1 classic_make_psc Makefile
     - cd ../classic && make -f Makefile.pack_psc_eris
-#    - echo -e "cd /var/www/html/project_eris/mods/\nput *.mod" | sftp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.keys/release_private_key.pem docker@classicmodscloud.com
+    - echo -e "cd /var/www/html/project_eris/mods/\nput *.mod" | sftp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ~/.keys/release_private_key.pem docker@classicmodscloud.com
