@@ -11,79 +11,155 @@
 
 s_joysticks joysticks[JOY_LIST_TOTAL];
 
+#if defined CLASSIC_PSC
 const char *JoystickKeyName[JOY_NAME_SIZE] = {
-	"...",
+  "...",
     #define JOYSTICK_NAMES(x) \
-	x" Up",             \
-	x" Right",          \
-	x" Down",           \
-	x" Left",           \
-	x" Button 1",       \
-	x" Button 2",       \
-	x" Button 3",       \
-	x" Button 4",       \
-	x" Button 5",       \
-	x" Button 6",       \
-	x" Button 7",       \
-	x" Button 8",       \
-	x" Button 9",       \
-	x" Button 10",       \
-	x" Button 11",       \
-	x" Button 12",       \
-	x" Button 13",       \
-	x" Button 14",       \
-	x" Button 15",       \
-	x" Button 16",       \
-	x" Button 17",       \
-	x" Button 18",       \
-	x" Button 19",       \
-	x" Button 20",       \
-	x" Button 21",       \
-	x" Button 22",       \
-	x" Button 23",       \
-	x" Button 24",       \
-	x" Button 25",       \
-	x" Button 26",       \
-	x" Button 27",       \
-	x" Button 28",       \
-	x" Button 29",       \
-	x" Button 30",       \
-	x" Button 31",       \
-	x" Button 32",       \
-	x" Button 33",       \
-	x" Button 34",       \
-	x" Button 35",       \
-	x" Button 36",       \
-	x" Button 37",       \
-	x" Button 38",       \
-	x" Button 39",       \
-	x" Button 40",       \
-	x" Button 41",       \
-	x" Button 42",       \
-	x" Button 43",       \
-	x" Button 44",       \
-	x" Button 45",       \
-	x" Button 46",       \
-	x" Button 47",       \
-	x" Button 48",       \
-	x" Button 49",       \
-	x" Button 50",       \
-	x" Button 51",       \
-	x" Button 52",       \
-	x" Button 53",       \
-	x" Button 54",       \
-	x" Button 55",       \
-	x" Button 56",       \
-	x" Button 57",       \
-	x" Button 58",       \
-	x" Button 59",       \
-	x" Button 60",
-	JOYSTICK_NAMES("P1")
-	JOYSTICK_NAMES("P2")
-	JOYSTICK_NAMES("P3")
-	JOYSTICK_NAMES("P4")
-	"undefined"
+  x" Up",              \
+  x" Right",           \
+  x" Down",            \
+  x" Left",            \
+  x" X",               \
+  x" SQUARE",          \
+  x" CIRCLE",          \
+  x" TRIANGLE",        \
+  x" SELECT",          \
+  x" Button 6",        \
+  x" START",           \
+  x" Button 8",        \
+  x" Button 9",        \
+  x" L1",              \
+  x" R1",              \
+  x" Button 12",       \
+  x" Button 13",       \
+  x" Button 14",       \
+  x" Button 15",       \
+  x" Button 16",       \
+  x" Button 17",       \
+  x" Button 18",       \
+  x" Button 19",       \
+  x" Button 20",       \
+  x" Button 21",       \
+  x" Button 22",       \
+  x" Button 23",       \
+  x" Button 24",       \
+  x" Button 25",       \
+  x" Button 26",       \
+  x" Button 27",       \
+  x" Button 28",       \
+  x" Button 29",       \
+  x" Button 30",       \
+  x" Button 31",       \
+  x" Button 32",       \
+  x" Button 33",       \
+  x" Button 34",       \
+  x" Button 35",       \
+  x" Button 36",       \
+  x" Button 37",       \
+  x" Button 38",       \
+  x" Button 39",       \
+  x" Button 40",       \
+  x" Button 41",       \
+  x" Button 42",       \
+  x" Button 43",       \
+  x" Button 44",       \
+  x" Button 45",       \
+  x" Button 46",       \
+  x" Button 47",       \
+  x" Button 48",       \
+  x" Button 49",       \
+  x" Button 50",       \
+  x" Button 51",       \
+  x" Button 52",       \
+  x" Button 53",       \
+  x" Button 54",       \
+  x" Button 55",       \
+  x" Button 56",       \
+  x" Button 57",       \
+  x" Button 58",       \
+  x" Button 59",       \
+  x" Button 60",
+  JOYSTICK_NAMES("P1")
+  JOYSTICK_NAMES("P2")
+  JOYSTICK_NAMES("P3")
+  JOYSTICK_NAMES("P4")
+  "undefined"
 };
+#else
+const char *JoystickKeyName[JOY_NAME_SIZE] = {
+  "...",
+    #define JOYSTICK_NAMES(x) \
+  x" Up",             \
+  x" Right",          \
+  x" Down",           \
+  x" Left",           \
+  x" Button 1",       \
+  x" Button 2",       \
+  x" Button 3",       \
+  x" Button 4",       \
+  x" Button 5",       \
+  x" Button 6",       \
+  x" Button 7",       \
+  x" Button 8",       \
+  x" Button 9",       \
+  x" Button 10",       \
+  x" Button 11",       \
+  x" Button 12",       \
+  x" Button 13",       \
+  x" Button 14",       \
+  x" Button 15",       \
+  x" Button 16",       \
+  x" Button 17",       \
+  x" Button 18",       \
+  x" Button 19",       \
+  x" Button 20",       \
+  x" Button 21",       \
+  x" Button 22",       \
+  x" Button 23",       \
+  x" Button 24",       \
+  x" Button 25",       \
+  x" Button 26",       \
+  x" Button 27",       \
+  x" Button 28",       \
+  x" Button 29",       \
+  x" Button 30",       \
+  x" Button 31",       \
+  x" Button 32",       \
+  x" Button 33",       \
+  x" Button 34",       \
+  x" Button 35",       \
+  x" Button 36",       \
+  x" Button 37",       \
+  x" Button 38",       \
+  x" Button 39",       \
+  x" Button 40",       \
+  x" Button 41",       \
+  x" Button 42",       \
+  x" Button 43",       \
+  x" Button 44",       \
+  x" Button 45",       \
+  x" Button 46",       \
+  x" Button 47",       \
+  x" Button 48",       \
+  x" Button 49",       \
+  x" Button 50",       \
+  x" Button 51",       \
+  x" Button 52",       \
+  x" Button 53",       \
+  x" Button 54",       \
+  x" Button 55",       \
+  x" Button 56",       \
+  x" Button 57",       \
+  x" Button 58",       \
+  x" Button 59",       \
+  x" Button 60",
+  JOYSTICK_NAMES("P1")
+  JOYSTICK_NAMES("P2")
+  JOYSTICK_NAMES("P3")
+  JOYSTICK_NAMES("P4")
+  "undefined"
+};
+#endif
 
 const char *GameparkKeyName[JOY_NAME_SIZE] = {
 	"...",
@@ -224,6 +300,80 @@ const u64 JoystickBits[JOY_MAX_INPUTS + 1] = {
 	0x8000000000000000  // Button 60
 };
 
+#if defined CLASSIC_PSC
+const char* JoystickButtonNames[JOY_NAME_SIZE] = {
+	"...",
+#define BUTTON_NAMES(x) \
+  x" X",              \
+  x" SQUARE",         \
+  x" CIRCLE",         \
+  x" TRIANGLE",       \
+  x" SELECT",         \
+  x" Button 6",       \
+  x" START",          \
+  x" Button 8",       \
+  x" Button 9",       \
+  x" L1",             \
+  x" R1",             \
+  x" Button 12",      \
+	x" Button 13",      \
+	x" Button 14",      \
+	x" Button 15",      \
+	x" Button 16",      \
+	x" Button 17",      \
+	x" Button 18",      \
+	x" Button 19",      \
+	x" Button 20",      \
+	x" Button 21",      \
+	x" Button 22",      \
+	x" Button 23",      \
+	x" Button 24",      \
+	x" Button 25",      \
+	x" Button 26",      \
+	x" Button 27",      \
+	x" Button 28",      \
+	x" Button 29",      \
+	x" Button 30",      \
+	x" Button 31",      \
+	x" Button 32",      \
+	x" Button 33",      \
+	x" Button 34",      \
+	x" Button 35",      \
+	x" Button 36",      \
+	x" Button 37",      \
+	x" Button 38",      \
+	x" Button 39",      \
+	x" Button 40",      \
+	x" Button 41",      \
+	x" Button 42",      \
+	x" Button 43",      \
+	x" Button 44",      \
+	x" Button 45",      \
+	x" Button 46",      \
+	x" Button 47",      \
+	x" Button 48",      \
+	x" Button 49",      \
+	x" Button 50",      \
+	x" Button 51",      \
+	x" Button 52",      \
+	x" Button 53",      \
+	x" Button 54",      \
+	x" Button 55",      \
+	x" Button 56",      \
+	x" Button 57",      \
+	x" Button 58",      \
+	x" Button 59",      \
+  x" Button 60",      \
+  x" Button 61",      \
+  x" Button 62",      \
+  x" Button 63",      \
+  x" Button 64",
+	BUTTON_NAMES("P1")
+	BUTTON_NAMES("P2")
+	BUTTON_NAMES("P3")
+	BUTTON_NAMES("P4")
+};
+#else
 const char* JoystickButtonNames[JOY_NAME_SIZE] = {
 	"...",
 #define BUTTON_NAMES(x) \
@@ -296,6 +446,7 @@ const char* JoystickButtonNames[JOY_NAME_SIZE] = {
 	BUTTON_NAMES("P3")
 	BUTTON_NAMES("P4")
 };
+#endif
 
 const char* JoystickAxisNames[JOY_NAME_SIZE] = {
 	"...",

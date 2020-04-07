@@ -552,9 +552,9 @@ static void drawMenu()
 	printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s", VERSION);
 #else
 #if defined CLASSIC_PSC
-  printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s, Target: PlayStation Classic", VERSION);
+  printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s, PlayStation Classic", VERSION);
 #elif defined CLASSIC_SEGA
-  printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s, Target: Mega Drive Mini", VERSION);
+  printText((isWide ? 26 : 5), (isWide ? 11 : 4), WHITE, 0, 0, "OpenBoR %s, Mega Drive Mini", VERSION);
 #endif
 #endif
 	printText((isWide ? 392 : 261),(isWide ? 11 : 4), WHITE, 0, 0, __DATE__);
